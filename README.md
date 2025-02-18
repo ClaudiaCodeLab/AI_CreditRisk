@@ -1,4 +1,4 @@
-# Credit Risk - README
+# Credit Risk
 
 ## Project Overview
 This project builds a machine learning model to classify loan borrowers as good or bad credit risks using a dataset of loan information. The process includes data cleaning, feature engineering, handling class imbalance with SMOTE-Tomek, and training an XGBoost model with cost-sensitive learning. A Streamlit app is also created to allow users to upload borrower data for predictions.
