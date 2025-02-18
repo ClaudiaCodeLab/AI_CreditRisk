@@ -12,14 +12,24 @@ required_features = ['term', 'sub_grade', 'emp_length', 'initial_list_status',
                      'annual_inc', 'dti', 'delinq_2yrs', 'inq_last_6mths',
                      'mths_since_last_delinq', 'open_acc', 'pub_rec']
 
-st.title("Borrower Credit Risk Prediction App")
-st.write("Upload an Excel file with borrower data to predict if they are good or bad borrowers.")
+st.title("Aplicación de Predicción de Riesgo de Crédito")
+#st.write("Aquí tienes un [ejemplo del fichero excel](https://docs.google.com/spreadsheets/d/1ls5y30XinLHIexTI2CMIVad9pmCzGhZr/edit?usp=drive_link&ouid=107476812262514809219&rtpof=true&sd=true)")
+with open('example_data.xlsx', 'rb') as file:
+    st.download_button(
+        label="Aquí tiene un ejemplo del fichero excel",
+        data=file,
+        file_name='example_file.xlsx',
+        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
 
-uploaded_file = st.file_uploader("Upload Excel file", type=["xls", "xlsx"])
+
+st.write("Carga un archivo Excel con datos de prestatarios para predecir si son buenos o malos pagadores.")
+
+uploaded_file = st.file_uploader("Carga un archivo Excel", type=["xls", "xlsx"])
 
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file)
-    st.write("Data Preview:")
+    st.write("Vista previa de los datos:")
     st.dataframe(data.head())
 
     if all(feature in data.columns for feature in required_features):
@@ -34,11 +44,11 @@ if uploaded_file is not None:
         predictions = model.predict(input_data)
         prediction_labels = ['Good Borrower' if pred == 1 else 'Bad Borrower' for pred in predictions]
 
-        st.write("## Predictions:")
+        st.write("## Predicciones:")
         results = data.copy()
-        results['Prediction'] = prediction_labels
+        results['Predicción'] = prediction_labels
         st.dataframe(results)
 
         output = results.to_excel("predictions_output.xlsx", index=False)        
     else:
-        st.error("Uploaded file does not contain all required features. Please include the following features: {}".format(', '.join(required_features)))
+        st.error("El archivo subido no contiene todas las columnas requeridas. Por favor, incluya las siguientes columnas: {}".format(', '.join(required_features)))
