@@ -1,0 +1,8 @@
+xgboost==2.1.4
+lightgbm
+catboost
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
