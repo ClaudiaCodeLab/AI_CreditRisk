@@ -13,7 +13,7 @@ required_features = ['term', 'sub_grade', 'emp_length', 'initial_list_status',
                      'mths_since_last_delinq', 'open_acc', 'pub_rec']
 
 st.title("Aplicación de Predicción de Riesgo de Crédito")
-#st.write("Aquí tienes un [ejemplo del fichero excel](https://docs.google.com/spreadsheets/d/1ls5y30XinLHIexTI2CMIVad9pmCzGhZr/edit?usp=drive_link&ouid=107476812262514809219&rtpof=true&sd=true)")
+
 with open('example_data.xlsx', 'rb') as file:
     st.download_button(
         label="Descarga el ejemplo de fichero excel",
@@ -49,6 +49,6 @@ if uploaded_file is not None:
         results['Predicción'] = prediction_labels
         st.dataframe(results)
 
-        output = results.to_excel("predictions_output.xlsx", index=False)        
+        #output = results.to_excel("predictions_output.xlsx", index=False)        
     else:
         st.error("El archivo subido no contiene todas las columnas requeridas. Por favor, incluya las siguientes columnas: {}".format(', '.join(required_features)))
