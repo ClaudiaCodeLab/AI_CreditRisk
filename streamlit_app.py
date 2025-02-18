@@ -16,7 +16,7 @@ st.title("Aplicación de Predicción de Riesgo de Crédito")
 #st.write("Aquí tienes un [ejemplo del fichero excel](https://docs.google.com/spreadsheets/d/1ls5y30XinLHIexTI2CMIVad9pmCzGhZr/edit?usp=drive_link&ouid=107476812262514809219&rtpof=true&sd=true)")
 with open('example_data.xlsx', 'rb') as file:
     st.download_button(
-        label="Aquí tiene un ejemplo del fichero excel",
+        label="Descarga el ejemplo de fichero excel",
         data=file,
         file_name='example_file.xlsx',
         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
